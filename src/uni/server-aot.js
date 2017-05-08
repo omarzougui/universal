@@ -3,6 +3,7 @@ import { enableProdMode } from '@angular/core';
 import { AppServerModuleNgFactory } from '../../aot/src/uni/app.server.ngfactory';
 import * as express from 'express';
 import { ngUniversalEngine } from './universal-engine';
+import { routes } from '../app/app-routing.module';
 enableProdMode();
 var server = express();
 // set our angular engine as the handler for html files, so it will be used to render them.
@@ -12,7 +13,12 @@ server.engine('html', ngUniversalEngine({
 // set default view directory
 server.set('views', 'src');
 // handle requests for routes in the app.  ngExpressEngine does the rendering.
-server.get(['/', '/article'], function (req, res) {
+var page_list = ['/'];
+routes.forEach(function (page) {
+    page_list.push('/' + page.path);
+});
+console.log(page_list);
+server.get(page_list, function (req, res) {
     res.render('index-aot.html', { req: req });
 });
 // handle requests for static files

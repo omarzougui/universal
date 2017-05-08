@@ -18,8 +18,8 @@ var AppComponent = (function () {
         this.platformId = platformId;
         this.title = 'app works fine!';
     }
+    // browser or server target
     AppComponent.prototype.ngOnInit = function () {
-        console.log(isPlatformBrowser(this.platformId));
         if (isPlatformBrowser(this.platformId)) {
             // Client only code.
             this.title = "Client";

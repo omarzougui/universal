@@ -14,7 +14,12 @@ server.engine('html', ngUniversalEngine({
 server.set('views', 'src');
 // handle requests for routes in the app.  ngExpressEngine does the rendering.
 
-server.get(['/','/article'], (req, res) => {
+let page_list:any=['/'];
+
+routes.forEach(page=>{
+  page_list.push('/'+page.path);
+});
+server.get(page_list, (req, res) => {
   res.render('index-aot.html', {req});
 });
 // handle requests for static files
