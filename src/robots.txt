@@ -1,0 +1,6 @@
+User-agent: *
+Disallow : /mon-compte*
+Disallow : /mentions-legales
+Disallow : /cgu
+Disallow : /*/impression
+Disallow: /?sort

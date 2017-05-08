@@ -4,6 +4,7 @@ import { AppServerModuleNgFactory } from '../../aot/src/uni/app.server.ngfactory
 import * as express from 'express';
 import { ngUniversalEngine } from './universal-engine';
 import {routes} from  '../app/app-routing.module';
+
 enableProdMode();
 const server = express();
 // set our angular engine as the handler for html files, so it will be used to render them.
@@ -14,8 +15,19 @@ server.engine('html', ngUniversalEngine({
 server.set('views', 'src');
 // handle requests for routes in the app.  ngExpressEngine does the rendering.
 
-let page_list:any=['/'];
 
+server.get(['/robots.txt'], (req, res) => {
+  res.sendFile('robots.txt', { root: 'src' });
+});
+server.get(['/manifest.webapp'], (req, res) => {
+  res.sendFile('manifest.webapp', { root: 'src' });
+});
+
+
+
+
+
+let page_list:any=['/'];
 routes.forEach(page=>{
   page_list.push('/'+page.path);
 });

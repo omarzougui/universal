@@ -13,11 +13,16 @@ server.engine('html', ngUniversalEngine({
 // set default view directory
 server.set('views', 'src');
 // handle requests for routes in the app.  ngExpressEngine does the rendering.
+server.get(['/robots.txt'], function (req, res) {
+    res.sendFile('robots.txt', { root: 'src' });
+});
+server.get(['/manifest.webapp'], function (req, res) {
+    res.sendFile('manifest.webapp', { root: 'src' });
+});
 var page_list = ['/'];
 routes.forEach(function (page) {
     page_list.push('/' + page.path);
 });
-console.log(page_list);
 server.get(page_list, function (req, res) {
     res.render('index-aot.html', { req: req });
 });
