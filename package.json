@@ -15,7 +15,7 @@
     "serve:aot": "lite-server -c=bs-config.aot.js",
     "build:uni": "webpack --config webpack.config.uni.js",
     "serve:uni": "node src/dist/server.js",
-    "uni": "npm run ngc:aot & npm run build:aot & npm run ngc:uni & npm run build:uni & npm run serve:uni",
+    "uni": "npm run ngc:aot && npm run build:aot && npm run ngc:uni && npm run build:uni && npm run serve:uni",
     "univ": "npm run build:uni & npm run serve:uni"
   },
   "private": true,
