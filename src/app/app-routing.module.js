@@ -8,7 +8,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ContactComponent } from './contact/contact.component';
 import { ArticleComponent } from './article/article.component';
-var routes = [
+export var routes = [
     { path: 'contact', component: ContactComponent },
     { path: 'article', component: ArticleComponent }
 ];

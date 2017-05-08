@@ -12,7 +12,7 @@ server.engine('html', ngUniversalEngine({
 // set default view directory
 server.set('views', 'src');
 // handle requests for routes in the app.  ngExpressEngine does the rendering.
-server.get(['/'], function (req, res) {
+server.get(['/', '/article'], function (req, res) {
     res.render('index-aot.html', { req: req });
 });
 // handle requests for static files
