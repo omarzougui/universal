@@ -1,4 +1,5 @@
 const path = require('path');
+const ProgressPlugin = require("webpack/lib/ProgressPlugin");
 const ngtools = require('@ngtools/webpack');
 const webpack = require('webpack');
 module.exports = {
@@ -17,8 +18,9 @@ module.exports = {
   plugins: [
     new ngtools.AotPlugin({
       tsConfigPath: './tsconfig-aot.json'
-    })//,
-    //new webpack.optimize.UglifyJsPlugin({ sourceMap: false, comments: false })
+    }),
+    new webpack.optimize.UglifyJsPlugin({ sourceMap: false, comments: false }),
+    new ProgressPlugin()
   ],
   module: {
     rules: [

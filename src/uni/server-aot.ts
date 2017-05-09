@@ -17,10 +17,10 @@ enableProdMode();
 const server = express();
 
 server.use(compression({filter: (req:any, res:any) => {
-  if (req.headers['x-no-compression']) {
-    // don't compress responses with this request header
-    return false
-  }
+  // if (req.headers['x-no-compression']) {
+  //   // don't compress responses with this request header
+  //   return false
+  // }
 
   // fallback to standard filter function
   return compression.filter(req, res)

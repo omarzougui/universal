@@ -32,9 +32,9 @@ export class AppComponent implements OnInit, AfterViewInit{
   }
 
   ngAfterViewInit() {
-    //var preboot :any = prebootClient();
-    //preboot.complete();
-    (<any>window).preboot.complete();
+    if ((<any>window).preboot) {
+      (<any>window).preboot.complete();
+    }
   }
 
 
