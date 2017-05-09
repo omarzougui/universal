@@ -2,16 +2,16 @@ import 'zone.js/dist/zone-node';
 import { enableProdMode } from '@angular/core';
 import { AppServerModuleNgFactory } from '../../aot/src/uni/app.server.ngfactory';
 import * as express from 'express';
-const compression = require('compression')
+const compression = require('compression');
 import { ngUniversalEngine } from './universal-engine';
 import {routes} from  '../app/app-routing.module';
 
-var preboot = require('preboot');
-var prebootOptions = {
+let preboot = require('preboot');
+let prebootOptions = {
   appRoot: 'app-root',
   uglify: false
 };  // see options section below
-var inlinePrebootCode = preboot.getInlineCode(prebootOptions);
+let inlinePrebootCode = preboot.getInlineCode(prebootOptions);
 
 enableProdMode();
 const server = express();
@@ -24,7 +24,7 @@ server.use(compression({filter: (req:any, res:any) => {
 
   // fallback to standard filter function
   return compression.filter(req, res)
-}}))
+}}));
 
 // set our angular engine as the handler for html files, so it will be used to render them.
 server.engine('html', ngUniversalEngine({
@@ -52,7 +52,7 @@ routes.forEach(page=>{
 });
 server.get(page_list, (req:any, res) => {
   (<any>req).preboot = {appRoot: 'app-root'};
-  res.render('index-aot.html', {req});
+  res.render('index.html', {req});
 });
 // handle requests for static files
 server.get(['/*.js'], (req, res, next) => {

@@ -44,7 +44,7 @@ routes.forEach(function (page) {
 });
 server.get(page_list, function (req, res) {
     req.preboot = { appRoot: 'app-root' };
-    res.render('index-aot.html', { req: req });
+    res.render('index.html', { req: req });
 });
 // handle requests for static files
 server.get(['/*.js'], function (req, res, next) {
