@@ -26,8 +26,13 @@ var AppComponent = (function () {
         }
         if (isPlatformServer(this.platformId)) {
             // Server only code.
-            this.title = "Universal";
+            this.title = "Client";
         }
+    };
+    AppComponent.prototype.ngAfterViewInit = function () {
+        //var preboot :any = prebootClient();
+        //preboot.complete();
+        window.preboot.complete();
     };
     return AppComponent;
 }());

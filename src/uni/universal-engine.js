@@ -24,6 +24,7 @@ export function ngUniversalEngine(setupOptions) {
             document: templateCache[filePath],
             url: url
         }).then(function (str) {
+            str = str.replace('/*preboot_code*/', setupOptions.preboot_code);
             outputCache[url] = str;
             callback(null, str);
         });

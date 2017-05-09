@@ -1,13 +1,16 @@
-import {Component, Inject, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Inject, OnInit} from '@angular/core';
 import { PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser, isPlatformServer } from '@angular/common';
+import {prebootClient} from "preboot/__dist/preboot_browser";
+
+declare var preboot:any;
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit, AfterViewInit{
   title = 'app works fine!';
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {  }
@@ -23,12 +26,16 @@ export class AppComponent implements OnInit{
     }
     if (isPlatformServer(this.platformId)) {
       // Server only code.
-      this.title="Universal";
+      this.title="Client";
 
     }
   }
 
-
+  ngAfterViewInit() {
+    //var preboot :any = prebootClient();
+    //preboot.complete();
+    (<any>window).preboot.complete();
+  }
 
 
 
