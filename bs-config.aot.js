@@ -7,7 +7,7 @@ module.exports = {
     },
     middleware: {
       // overrides the fallback middleware to use index-aot
-      1: require('connect-history-api-fallback')({ index: '/app/index-aot.html' })
+      1: require('connect-history-api-fallback')({ index: 'src/app/index-aot.html' })
     }
   }
 };

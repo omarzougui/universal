@@ -2,8 +2,10 @@ const path = require('path');
 const ProgressPlugin = require("webpack/lib/ProgressPlugin");
 const ngtools = require('@ngtools/webpack');
 const webpack = require('webpack');
+const nodeExternals = require('webpack-node-externals');
+
 module.exports = {
-  devtool: 'source-map',
+  //devtool: 'source-map',
   entry: {
     main: ['./src/uni/app.server.ts', './src/uni/server-aot.ts']
   },
@@ -11,6 +13,7 @@ module.exports = {
     extensions: ['.ts', '.js']
   },
   target: 'node',
+  externals: [nodeExternals()],
   output: {
     path: path.resolve(__dirname, 'src/dist'),
     filename: 'server.js'

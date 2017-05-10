@@ -4,21 +4,13 @@ import { AppServerModuleNgFactory } from '../../aot/src/uni/app.server.ngfactory
 import * as express from 'express';
 const compression = require('compression');
 import { ngUniversalEngine } from './universal-engine';
-import {routes} from  '../app/app-routing.module';
+import {routes} from '../app/app-routing.module';
 
-let jsdom = require('jsdom').jsdom;
-
-(<any>global).document = jsdom('');
-(<any>global).window = document.defaultView;
-Object.keys(document.defaultView).forEach((property) => {
-  if (typeof global[property] === 'undefined') {
-    global[property] = document.defaultView[property];
-  }
-});
-
-(<any>global).navigator = {
-  userAgent: 'node.js'
-};
+const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
+const dom = new JSDOM(`...`);
+(<any>global).window = dom.window;
+(<any>global).document = dom.window.document;
 
 let preboot = require('preboot');
 let prebootOptions = {
