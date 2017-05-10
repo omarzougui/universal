@@ -6,8 +6,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from '@angular/material';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ContactComponent } from './contact/contact.component';
@@ -25,12 +27,15 @@ AppModule = __decorate([
             ArticleComponent
         ],
         imports: [
+            MaterialModule,
+            ReactiveFormsModule,
             BrowserModule.withServerTransition({
                 appId: 'toh-universal'
             }),
             FormsModule,
             HttpModule,
-            AppRoutingModule
+            AppRoutingModule,
+            BrowserAnimationsModule
         ],
         providers: [],
         bootstrap: [AppComponent]

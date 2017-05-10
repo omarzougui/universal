@@ -1,2 +1,55 @@
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="nav-content">
+      <button md-icon-button (click)="sidenav.open()">
+        <md-icon>menu</md-icon>
+      </button>
+    </div>
+    <div class="nav-content">
+      ghghrty
+    </div>
+  </div>
+</nav>
+
+
+
+
+<md-sidenav-container class="example-container">
+
+
+  <md-sidenav #sidenav class="example-sidenav">
+
+
+    <md-nav-list>
+      <md-list-item *ngFor="let link of linksNav1">
+        <a md-line  class="nav-link" >
+          <button md-icon-button (click)="showInfo(link.item)">
+            <md-icon>{{ link.logo }}</md-icon>
+          </button>
+          {{ link.item }}</a>
+      </md-list-item>
+    </md-nav-list>
+
+
+    <hr>
+
+
+
+    <md-nav-list>
+      <md-list-item *ngFor="let link of linksNav2">
+        <a md-line href="...">
+          <button md-icon-button (click)="showInfo(link.item)">
+            <md-icon>{{ link.logo }}</md-icon>
+          </button>
+          {{ link.item }}</a>
+      </md-list-item>
+    </md-nav-list>
+
+  </md-sidenav>
+
+
+
+</md-sidenav-container>
 {{title}}
 <router-outlet></router-outlet>

@@ -17,6 +17,17 @@ var AppComponent = (function () {
     function AppComponent(platformId) {
         this.platformId = platformId;
         this.title = 'app works fine!';
+        this.linksNav1 = [
+            { item: 'Inbox', logo: 'inbox' },
+            { item: 'Start', logo: 'start' },
+            { item: 'Sent Mail', logo: 'send' }
+        ];
+        this.linksNav2 = [
+            { item: 'Draft', logo: 'drafts' },
+            { item: 'All Mail', logo: 'email' },
+            { item: 'Trash', logo: 'delete' },
+            { item: 'Spam', logo: 'report' }
+        ];
     }
     // browser or server target
     AppComponent.prototype.ngOnInit = function () {
@@ -30,9 +41,9 @@ var AppComponent = (function () {
         }
     };
     AppComponent.prototype.ngAfterViewInit = function () {
-        //var preboot :any = prebootClient();
-        //preboot.complete();
-        window.preboot.complete();
+        if (window.preboot) {
+            window.preboot.complete();
+        }
     };
     return AppComponent;
 }());

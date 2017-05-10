@@ -13,8 +13,19 @@ declare var preboot:any;
 export class AppComponent implements OnInit, AfterViewInit{
   title = 'app works fine!';
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {  }
+  linksNav1=[
+    {item:'Inbox',logo:'inbox'},
+    {item:'Start',logo:'start'},
+    {item:'Sent Mail',logo:'send'}
+  ];
+  linksNav2=[
+    {item:'Draft',logo:'drafts'},
+    {item:'All Mail',logo:'email'},
+    {item:'Trash',logo:'delete'},
+    {item:'Spam',logo:'report'}
+  ];
 
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {  }
 
   // browser or server target
   ngOnInit() {

@@ -5,6 +5,17 @@ import * as express from 'express';
 var compression = require('compression');
 import { ngUniversalEngine } from './universal-engine';
 import { routes } from '../app/app-routing.module';
+var jsdom = require('jsdom').jsdom;
+global.document = jsdom('');
+global.window = document.defaultView;
+Object.keys(document.defaultView).forEach(function (property) {
+    if (typeof global[property] === 'undefined') {
+        global[property] = document.defaultView[property];
+    }
+});
+global.navigator = {
+    userAgent: 'node.js'
+};
 var preboot = require('preboot');
 var prebootOptions = {
     appRoot: 'app-root',
@@ -44,7 +55,7 @@ routes.forEach(function (page) {
 });
 server.get(page_list, function (req, res) {
     req.preboot = { appRoot: 'app-root' };
-    res.render('index.html', { req: req });
+    res.render('index-aot.html', { req: req });
 });
 // handle requests for static files
 server.get(['/*.js'], function (req, res, next) {

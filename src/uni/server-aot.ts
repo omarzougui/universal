@@ -6,6 +6,20 @@ const compression = require('compression');
 import { ngUniversalEngine } from './universal-engine';
 import {routes} from  '../app/app-routing.module';
 
+let jsdom = require('jsdom').jsdom;
+
+(<any>global).document = jsdom('');
+(<any>global).window = document.defaultView;
+Object.keys(document.defaultView).forEach((property) => {
+  if (typeof global[property] === 'undefined') {
+    global[property] = document.defaultView[property];
+  }
+});
+
+(<any>global).navigator = {
+  userAgent: 'node.js'
+};
+
 let preboot = require('preboot');
 let prebootOptions = {
   appRoot: 'app-root',
@@ -52,7 +66,7 @@ routes.forEach(page=>{
 });
 server.get(page_list, (req:any, res) => {
   (<any>req).preboot = {appRoot: 'app-root'};
-  res.render('index.html', {req});
+  res.render('index-aot.html', {req});
 });
 // handle requests for static files
 server.get(['/*.js'], (req, res, next) => {
